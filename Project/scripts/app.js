@@ -3,6 +3,7 @@
         app = global.app = global.app || {},
         os = kendo.support.mobileOS,
         statusBarStyle = os.ios && os.flatVersion >= 700 ? "black-translucent" : "black";
+    
 
     document.addEventListener('deviceready', function () {
         navigator.splashscreen.hide();
@@ -22,4 +23,5 @@
 
         app.application.skin(mobileSkin);
     };
+    
 })(window);
