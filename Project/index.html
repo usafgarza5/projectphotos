@@ -1,160 +1,174 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title></title>
-    <meta charset="utf-8" />
-    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-    <link href="styles/main.css" rel="stylesheet" />
+    <head>
+        <title></title>
+        <meta charset="utf-8" />
+        <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+        <link href="styles/main.css" rel="stylesheet" />
 
-    <script src="cordova.js"></script>
-    <script src="kendo/js/jquery.min.js"></script>
-    <script src="kendo/js/kendo.mobile.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+        <script src="cordova.js"></script>
+        <script src="kendo/js/jquery.min.js"></script>
+        <script src="kendo/js/kendo.mobile.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 
-    <script src="scripts/login.js"></script>
-    <script src="scripts/location.js"></script>
-    <script src="scripts/weather.js"></script>
-    <script src="scripts/app.js"></script>
+        <script src="scripts/login.js"></script>
+        <script src="scripts/location.js"></script>
+        <script src="scripts/weather.js"></script>
+        <script src="scripts/app.js"></script>
 
-</head>
-<body>
-    <!--Home-->
-    <div id="tabstrip-home"
-        data-role="view"
-        data-title="Home">
-
-        <div class="view-content">
-            <h1>Welcome!</h1>
-            <a id="skin-change" data-role="button" data-click="app.changeSkin">Flat</a>
-            <p>
-                Icenium&trade; enables you to build cross-platform device applications regardless of your
-                    development platform by combining the convenience of a local development toolset with the
-                    power and flexibility of the cloud.
-            </p>
-            <div class="img"></div>
-        </div>
-    </div>
-
-    <!--Login-->
-    <div id="tabstrip-login"
-        data-role="view"
-        data-title="Login"
-        data-model="app.loginService.viewModel">
-
-        <div class="view-content">
-            <div class="logo"></div>
-            <h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>
-            <h1 class="welcome" data-bind="visible: isLoggedIn">Welcome, <span data-bind="text: username"></span>!
-            </h1>
-            <div class="buttonArea">
-                <input type="submit" id="logout" data-role="button" data-bind="click: onLogout, visible: isLoggedIn" class="login-button" value="Logout" />
-            </div>
-
-            <form data-bind="events: { keyup: checkEnter }">
-                <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
-                    <li>
-                        <label>
-                            Username
-                                <input type="text" data-bind="value: username" />
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            Password
-                                <input type="password" data-bind="value: password" />
-                        </label>
-                    </li>
-                </ul>
-
-                <div class="buttonArea">
-                    <input type="submit" id="login" data-role="button" data-bind="click: onLogin, invisible: isLoggedIn" class="login-button" value="Login" />
-                </div>
-            </form>
-        </div>
-
-    </div>
-
-    <!--Location-->
-    <div id="tabstrip-location"
-        data-role="view"
-        data-title="Location"
-        data-init="app.locationService.initLocation"
-        data-show="app.locationService.show"
-        data-hide="app.locationService.hide"
-        data-model="app.locationService.viewModel"
-        data-stretch="true">
-
-        <div id="no-map" data-bind="invisible: isGoogleMapsInitialized">
-            Location requires internet connection to display the map.
-        </div>
-        <div id="map-search-wrap" data-bind="visible: isGoogleMapsInitialized">
-            <button id="map-navigate-home" data-bind="click: onNavigateHome"></button>
-            <form onsubmit="return false;">
-                <input id="map-address" type="search" data-bind="value: address" placeholder="Address" />
-                <input id="map-search" type="submit" value="" data-bind="click: onSearchAddress" />
-            </form>
-        </div>
-        <div id="map-canvas" data-bind="visible: isGoogleMapsInitialized"></div>
-
-    </div>
-
-    <!--Weather-->
-    <div id="tabstrip-weather"
-        data-role="view"
-        data-title="Weather"
-        data-model="app.weatherService.viewModel">
-
-        <div class="weather">
-            <p class="weather-title">20-Day Forecast</p>
-
-            <div class="separator">
-                <div class="dark"></div>
-                <div class="light"></div>
-            </div>
-
-            <ul class="forecast-list"
-                data-role="listview"
-                data-bind="source: weatherDataSource"
-                data-template="weather-forecast-template">
+    </head>
+    <body>
+        <div data-role="view" id="button-home" data-title="Texas A&M San Antonio:School of Business">
+            <div class="home head">&nbsp;</div>
+            <a class="button selected-button" data-role="button" href="#button-home">Home</a>
+            <a class="button" data-role="button" href="#admissions">Admissions</a>
+            <a class="button" data-role="button" href="#degreeplans">Degree Plans</a>
+            <a class="button" data-role="button" href="#links">Links</a>
+            
+            <ul data-role="listview" data-style="inset">
+                <li>
+                    <b><p align="center"style="color:darkred">School of Business</p></b>
+                    <small><p align="center">The College of Business at Texas A&M University-San Antonio prepares students for a successful career in business or can enhance your job placement potential with a bachelor’s or master’s degree.  The low student-to teacher ratio and experienced faculty provides for a more personal learning environment that is designed to help students succeed. Financial assistance and scholarship opportunities are available to students as well as seamless transfer plans prepared by the dedicated advisors. City-Base Campus is located in southeast San Antonio and offers bachelor’s degrees in accounting, computer information systems, finance, management and marketing.  Master of Business Administration (MBA) and Professional Accounting (MPA) are also available. Its evening and Saturday classes are designed to fit the schedule of working professionals at the lowest university tuition rates in San Antonio.</p></small>
+                </li>
             </ul>
         </div>
-    </div>
 
-    <!--Weather forecast template-->
-    <script type="text/x-kendo-tmpl" id="weather-forecast-template">
-        <div>
-            <div class="position-left">
-                <span class="weather-info date">${day}</span>
-            </div>
-            <div class="position-right">
-                <span class="weather-info temperature high">${highTemperature}<sup>&deg;</sup></span>
-                <span class="weather-info temperature low">${lowTemperature}<sup>&deg;</sup></span>
-            </div>
-            <div class="position-center">
-                <span class="weather-icon ${image}"></span>
-            </div>
-        </div>
-    </script>
-
-    <!--Layout-->
-    <div data-role="layout" data-id="tabstrip-layout">
-
-        <!--Header-->
-        <div data-role="header">
-            <div data-role="navbar">
-                <span data-role="view-title"></span>
-            </div>
+        <div data-role="view" id="admissions" data-title="Admissions">
+            <div class="admissions head">&nbsp;</div>
+            <a class="button" data-role="button" href="#button-home">Home</a>
+            <a class="button selected-button" data-role="admissions" href="#admissions">Admissions</a>
+            <a class="button" data-role="button" href="#degreeplans">Degree Plans</a>
+            <a class="button" data-role="button" href="#links">Links</a>
+            <ul data-role="listview" data-style="inset">
+                <li>
+                    <p>The facility has two indoor basketball fields, olympic size swimming pool, outdoor soccer field, baseball field, golf club and more.</p>
+                </li>
+            </ul>
+            
         </div>
 
-        <!--Footer-->
-        <div data-role="footer">
-            <div data-role="tabstrip">
-                <a href="#tabstrip-home" data-icon="home">Home</a>
-                <a href="#tabstrip-login" data-icon="contacts">Login</a>
-                <a href="#tabstrip-location" data-icon="search">Location</a>
-                <a href="#tabstrip-weather" data-icon="globe">Weather</a>
-            </div>
+        <div data-role="view" id="degreeplans" data-title="Degree Plans">
+            <div class="degreeplans head">&nbsp;</div>
+            <a class="button" data-role="button" href="#button-home">Home</a>
+            <a class="button" data-role="button" href="#admissions">Admissions</a>
+            <a class="button selected-button" data-role="degreeplans" href="#degreeplans">Degree Plans</a>
+            <a class="button" data-role="button" href="#links">Links</a>
+            <ul data-role="listview" data-style="inset">
+                <li><b>Undergraduate</b></li>
+                <li></li>
+                <li><b align="center" style="color:darkred">(BBA) Bachelor of Business Administration Degrees</b></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077555178864907-10.100.20.116.pdf">Bachelor of Business Administration-Accounting</a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077555409655019-10.100.20.116.pdf">Bachelor of Business Administration-CIS-Enterprise Resource Planning concentration</a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077555600756107-10.100.20.116.pdf">Bachelor of Business Administration-CIS-Information Assurance & Security concentration</a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077555709666539-10.100.20.116.pdf">Bachelor of Business Administration-CIS-Project Management concentration</a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077555351996555-10.100.20.116.pdf">Bachelor of Business Administration-Computer Information Systems</a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077555936081483-10.100.20.116.pdf">Bachelor of Business Administration-Finance</a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077556107963083-10.100.20.116.pdf">Bachelor of Business Administration-General Business</a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077556187028619-10.100.20.116.pdf">Bachelor of Business Administration-International Management </a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077556294532747-10.100.20.116.pdf">Bachelor of Business Administration-Management</a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077556418600011-10.100.20.116.pdf">Bachelor of Business Administration-Management-Human Resources concentration </a></li>
+                <li><a href="http://www.tamusa.tamus.edu/uploadFilE/folders/k00252411/Pdf/Pdf-635077556493915403-10.100.20.116.pdf">Bachelor of Business Administration-Management-Supply Chain concentration</a></li>
+                <li><a href="http://i983.photobucket.com/albums/ae312/usafgarza5/Mobile%20Uploads/BBA-Marketing_zps751bd1eb.png">Bachelor of Business Administration-Marketing</a></li>
+                <li><a href="http://s983.photobucket.com/user/usafgarza5/media/Mobile%20Uploads/BBA-Marketing_zps751bd1eb.png.html" target="_blank"><img src="http://i983.photobucket.com/albums/ae312/usafgarza5/Mobile%20Uploads/BBA-Marketing_zps751bd1eb.png" border="0" alt="BBA-Marketing photo BBA-Marketing_zps751bd1eb.png"/>TEST</a></li>
+                <li></li>
+                <li><b>(BS) Bachelor of Science Degrees</b></li>
+                <li></li>
+                <li><a href="">Bachelor of Science in Computer Science</a></li>
+                <li></li>
+                <li><b>(BAAS) Bachelor of Applied Arts and Science Degrees</b></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+            </ul>            
         </div>
-    </div>
-</body>
+        
+        <div data-role="view" id="links" data-title="Links">
+            <div class="links head">&nbsp;</div>
+            <a class="button" data-role="button" href="#button-home">Home</a>
+            <a class="button" data-role="button" href="#admissions">Admissions</a>
+            <a class="button" data-role="button" href="#degreeplans">Degree Plans</a>
+            <a class="button selected-button" data-role="button" href="#links">Links</a>
+            
+            <ul data-role="listview" data-style="inset">
+                <li>
+                    <p>The facility has two indoor basketball fields, olympic size swimming pool, outdoor soccer field, baseball field, golf club and more.</p>
+                </li>
+            </ul>        
+         </div>
+        
+        
+
+        <style scoped>
+            .button
+            {
+                margin-left: .1em;
+                text-align: center;
+            }
+            .km-root .selected-button
+            {
+                color: #fff;
+                background-color: #6A6A6A;
+            }
+            /* solid filled buttons in iOS7 should override the border-color */
+            .km-ios7 .selected-button
+            {
+                border-color: transparent;
+            }
+            .button:first-of-type
+            {
+                margin-left: .2em;
+            }
+            .home
+            {
+                background: url(http://lospadrespreguntan.files.wordpress.com/2011/08/new_logo.jpg) no-repeat center center;
+            }
+            .admissions
+            {
+                background: url(http://www.tamusa.tamus.edu/uploadFile/folders/jduran17/Image/Image-635065474397032487-10.100.20.116.jpg) no-repeat center center; 
+            }
+            .degreeplans
+            {
+                background: url(http://www.veranocommunity.com/wp-content/uploads/2012/08/Image-634799414258748037-10.100.20.115.jpg) no-repeat center center; 
+            }
+            .links
+            {
+                background: url(http://www.tamusa.tamus.edu/_redesign-files/images/slide-interior.jpg) no-repeat center center; 
+            }
+            #button-home .head,
+            #admissions .head,
+            #degreeplans .head,
+            #links .head
+            {
+                display: block;
+                margin: 1em;
+                height: 200px;
+                -webkit-background-size: 100% auto;
+                background-size: 100% auto;
+            }
+            .km-ios .head,
+            .km-blackberry .head
+            {
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+            }
+        </style>
+        
+        <script>
+            $("#home-link").kendoMobileButton();
+        </script>
+        
+        <script>
+            var app = new kendo.mobile.Application(document.body);
+        </script>
+    </body>
 </html>
